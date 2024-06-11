@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Popup</title>
+</head>
+<style>
+body{
+  display: flex;
+  justify-Content: center;
+  margin: auto;
+  height: 100vh;
+  background: black;
+  color: white;
+}
+  #askQuestionButton {
+    outline: none;
+    border: none;
+    font-Weight: bold;
+    padding: 5px 5px;
+    color: white;
+    background: green;
+  }
+  .bot {
+    margin: auto;
+    text-Align: center;
+  }
+  #response {
+    width: 100%;
+    text-Align: left;
+    line-Height: 1;
+    background: grey;
+    color: black;
+    height: auto;
+    overflow-y: scroll;
+    font-size: 12px;
+    margin: 2% 0;
+  }
+</style>
+<body>
+  <div class="bot">
+    <h1>Zainudin ai</h1>
+     <button id="askQuestionButton">Ask Question</button>
+  <div id="response"></div>
+  </div>
+
+  <script>
+    document.getElementById('askQuestionButton').addEventListener('click', async () => {
+      const question = prompt('Pertanyaan:');
+      if (question) {
+        const response = await fetch('/get-response', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ question })
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          document.getElementById('response').innerText = data.message;
+        } else {
+          document.getElementById('response').innerText = 'Error occurred while fetching the response.';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
