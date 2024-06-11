@@ -10,7 +10,7 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 app.get('/', (req, res) => {
   res.send('hello world')
 })
-app.post('/:quest', async (req, res) => {
+app.post('/api/:quest', async (req, res) => {
   const quest = req.params.quest
   const chatCompletion = await getGroqChatCompletion(quest);
  const message = chatCompletion.choices[0]?.message?.content
