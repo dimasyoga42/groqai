@@ -11,7 +11,7 @@ app.use(express.static('public')); // Serve static files from the 'public' direc
 app.use(express.json()); // To parse JSON bodies
 
 
-app.post('/get-response', async (req, res) => {
+app.post('/api/get-response', async (req, res) => {
   try {
     const { question } = req.body; // Get question from the request body
     const chatCompletion = await getGroqChatCompletion(question);
