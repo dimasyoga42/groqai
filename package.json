@@ -3,10 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "description": "groq ai berbasis express",
-  "main": "index.html",
+  "main": "api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon api/index.js"
   },
   "author": "dimasyoga42",
   "license": "MIT",
